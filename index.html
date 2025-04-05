@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ESP32 Light Control</title>
+</head>
+<body>
+  <h1>Control the Light</h1>
+  <button onclick="setLED(1)">Turn ON</button>
+  <button onclick="setLED(0)">Turn OFF</button>
+
+  <script>
+    function setLED(state) {
+      fetch('https://led-control-bab73-default-rtdb.asia-southeast1.firebasedatabase.app/', {
+        method: 'PUT',
+        body: JSON.stringify(state)
+      })
+      .then(res => console.log("LED state updated!"))
+      .catch(err => console.error("Error:", err));
+    }
+  </script>
+</body>
+</html>
